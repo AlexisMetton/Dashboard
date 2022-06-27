@@ -9,11 +9,11 @@ use Symfony\Component\Security\Core\User\UserInterface;
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
  */
-class User implements UserInterface, \Serializable
+class User implements UserInterface,\Serializable
 {
     /**
-     * @ORM\Id()
-     * @ORM\GeneratedValue()
+     * @ORM\Id
+     * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
     private $id;
@@ -66,7 +66,7 @@ class User implements UserInterface, \Serializable
      *      return array('ROLE_USER');
      *  }
      * 
-     * Alternatively, the roles might be stored on a ''roles'' property,
+     * Alternatively, the roles might be stored on a ``roles`` property,
      * and populated in any number of different ways when the user object
      * is created.
      * 
@@ -89,9 +89,15 @@ class User implements UserInterface, \Serializable
     {
         return null;
     }
+
+    /**
+     * Removes sensitive data from the user.
+     * 
+     * This is important if, at any given point, sensitive information like
+     * the plain-text password is stored on this object
+     */
     public function eraseCredentials()
     {
-        
     }
 
 
