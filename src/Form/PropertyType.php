@@ -13,6 +13,12 @@ class PropertyType extends AbstractType
     {
         $builder
             ->add('title')
+            ->add('url')
+            ->add('adresse')
+            ->add('code')
+            ->add('ville')
+            ->add('lieu')
+            ->add('title')
             ->add('description')
             ->add('prix')
             ->add('id_categorie')

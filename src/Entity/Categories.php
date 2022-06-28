@@ -20,11 +20,6 @@ class Categories
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $categorie1;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
     private $categorie;
 
     /**
