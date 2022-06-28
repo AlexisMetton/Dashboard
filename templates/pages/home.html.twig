@@ -16,6 +16,7 @@
         <h2>Les derniers biens</h2>
         <div class="row flex">
             {% for property in properties %}
+           
                 <div class="col-3">
                     <div class="card">
                         <div class="card-body">
@@ -23,11 +24,18 @@
                                 <a href="{{ path('property.show', {id: property.id, slug: property.slug}) }}">{{ property.title }}</a>
                             </h5>
                             <p class="card-text">{{ property.description }}</p>
+                             {% if property.image == true %}
+                            <img src="{{ asset ('img/ticket/') ~ property.image}}">
+                            {% endif %}         
                             <div class="text-primary" style="font-weight:bold; font-size:2rem">{{ property.formattedPrice}} €</div>
                         </div>
                     </div>
                 </div>
+                
             {% endfor %}
+            
+                 
+           
         </div>
     </div>
 {% endblock %}

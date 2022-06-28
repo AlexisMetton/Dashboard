@@ -39,14 +39,27 @@ class Property
     private $prix;
 
     /**
-     * @ORM\Column(type="integer")
-     */
-    private $rooms;
-
-    /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $image;
+
+    
+    private $brochureFilename;
+    
+
+    public function getBrochureFilename()
+    {
+        return $this->brochureFilename;
+    }
+
+    public function setBrochureFilename($brochureFilename)
+    {
+        $this->brochureFilename = $brochureFilename;
+
+        return $this;
+    }
+
+
 
     /**
      * @ORM\Column(type="date")
@@ -109,17 +122,6 @@ class Property
         return number_format($this->prix, 2, ',', ' ');
     }
 
-    public function getRooms(): ?int
-    {
-        return $this->rooms;
-    }
-
-    public function setRooms(int $rooms): self
-    {
-        $this->rooms = $rooms;
-
-        return $this;
-    }
 
     public function getImage(): ?string
     {

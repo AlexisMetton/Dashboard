@@ -3,9 +3,12 @@
 namespace App\Form;
 
 use App\Entity\Property;
+
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\HttpFoundation\File\File;
 
 class PropertyType extends AbstractType
 {
@@ -15,8 +18,7 @@ class PropertyType extends AbstractType
             ->add('title')
             ->add('description')
             ->add('prix')
-            ->add('rooms')
-            ->add('image')
+            ->add('image',FileType::class, ["mapped"=>false,'data_class'=>null,'label'=> 'ticket', 'required' => false])
             ->add('dateAchat')
             ->add('dateGarantie')
         ;
@@ -26,6 +28,7 @@ class PropertyType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Property::class,
+            
         ]);
     }
 }

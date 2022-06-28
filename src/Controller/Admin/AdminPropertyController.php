@@ -5,12 +5,18 @@ namespace App\Controller\Admin;
 use App\Entity\Property;
 use App\Form\PropertyType;
 use App\Repository\PropertyRepository;
+use App\Service\FileUploader;
+use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ObjectManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\String\Slugger\SluggerInterface;
 use Symfony\Component\Routing\Annotation\Route;
+
 
 class AdminPropertyController extends AbstractController
 {
@@ -47,41 +53,85 @@ class AdminPropertyController extends AbstractController
     /**
      * @Route("/admin/property/create", name="admin.property.new")
      */
-    public function new(Request $request)
+    public function new(Request $request,FileUploader $fileUploader,EntityManagerInterface $entityManager): Response
     {
         $property = new Property();
         $form = $this->createForm(PropertyType::class, $property);
         $form->handleRequest($request);
+       
+       
 
         if($form->isSubmitted() && $form->isValid())
-        {
+        { 
+          //  $property->setBrochureFilename(
+              //  new File($this->getParameter('brochures_directory').$property->getBrochureFilename()));
+         
+            $brochureFile = $form->get('image')->getData();
+
+            // this condition is needed because the 'brochure' field is not required
+            // so the PDF file must be processed only when a file is uploaded
+            if ($brochureFile) {
+            
+                $brochureFileName = $fileUploader->upload($brochureFile);
+                $property->setimage($brochureFileName);
+
+            }
+
             $this->em->persist($property);
             $this->em->flush();
             $this->addFlash('success', 'Achat créé avec succès');
-            return $this->redirectToRoute('admin.property.index');
+            return $this->redirectToRoute('admin.property.index',[], Response::HTTP_SEE_OTHER);
+
         }
 
         return $this->render('admin/property/new.html.twig', [
             'property' => $property,
             'form' => $form->createView()
         ]
-    );
+        );
+       
     }
 
     /**
      * @Route("/admin/property/{id}", name="admin.property.edit")
      */
 
-    public function edit(Property $property, Request $request)
+    public function edit(Property $property, Request $request, FileUploader $fileUploader,EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(PropertyType::class, $property);
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid())
-        {
+        { 
+
+            $brochureFile = $form->get('image')->getData();
+
+            // this condition is needed because the 'brochure' field is not required
+            // so the PDF file must be processed only when a file is uploaded
+            if ($brochureFile) {
+                $brochureFileName = $fileUploader->upload($brochureFile);
+                $property->setimage($brochureFileName);
+
+                // Move the file to the directory where brochures are stored
+             /*   try {
+                    $brochureFile->move(
+                        $this->getParameter('brochures_directory'),
+                        $newFilename
+                    );
+                } catch (FileException $e) {
+                    // ... handle exception if something happens during file upload
+                }
+
+                // updates the 'brochureFilename' property to store the PDF file name
+                // instead of its contents
+                $property->setImage($newFilename);*/
+            }
+
+            
+
             $this->em->flush();
             $this->addFlash('success', 'Achat modifié avec succès');
-            return $this->redirectToRoute('admin.property.index');
+            return $this->redirectToRoute('admin.property.index',[], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('admin/property/edit.html.twig', [

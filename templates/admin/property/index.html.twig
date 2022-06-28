@@ -24,6 +24,7 @@
                 <tr>
                     <td>{{ property.title }}</td>
                     <td>
+                    <img src="{{property.image}}">
                         <a href="{{ path('admin.property.edit', {id: property.id}) }}" class="btn btn-secondary">Editer</a>
                         <form method="post" action="{{ path('admin.property.delete', {id: property.id}) }}" style="display:inline-block;" onsubmit="return confirm('Êtes-vous vraiment sûr ?')">
                             <input type="hidden" name="_method" value="DELETE">
