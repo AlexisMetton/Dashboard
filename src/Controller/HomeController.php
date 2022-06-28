@@ -16,7 +16,7 @@ class HomeController extends AbstractController
      */
     public function index(PropertyRepository $repository): Response
     {
-        $properties = $repository->findLatest();
+        $properties = $repository->findAll();
         return $this->render('pages/home.html.twig', [
             'properties' => $properties
         ]);

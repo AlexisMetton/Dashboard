@@ -24,6 +24,7 @@ class PropertyType extends AbstractType
             ->add('title')
             ->add('description')
             ->add('prix')
+            ->add('id_categorie')
             ->add('image',FileType::class, ["mapped"=>false,'data_class'=>null,'label'=> 'ticket', 'required' => false])
             ->add('dateAchat')
             ->add('dateGarantie')
