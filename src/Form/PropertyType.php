@@ -16,6 +16,12 @@ class PropertyType extends AbstractType
     {
         $builder
             ->add('title')
+            ->add('url')
+            ->add('adresse')
+            ->add('code')
+            ->add('ville')
+            ->add('lieu')
+            ->add('title')
             ->add('description')
             ->add('prix')
             ->add('image',FileType::class, ["mapped"=>false,'data_class'=>null,'label'=> 'ticket', 'required' => false])

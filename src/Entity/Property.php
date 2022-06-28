@@ -71,6 +71,38 @@ class Property
      */
     private $dateGarantie;
 
+    /**
+     * @ORM\Column(type="integer")
+     * @Assert\Range(min="1")
+     */
+    private $id_categorie;
+
+    /**
+     * @ORM\Column(type="string", length=1000, nullable=true)
+     */
+    private $url;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $adresse;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $code;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $ville;
+
+    /**
+     * @ORM\Column(type="integer")
+     * @Assert\Range(min="1", max="2")
+     */
+    private $lieu;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -122,7 +154,6 @@ class Property
         return number_format($this->prix, 2, ',', ' ');
     }
 
-
     public function getImage(): ?string
     {
         return $this->image;
@@ -155,6 +186,78 @@ class Property
     public function setDateGarantie(\DateTimeInterface $dateGarantie): self
     {
         $this->dateGarantie = $dateGarantie;
+
+        return $this;
+    }
+
+    public function getIdCategorie(): ?int
+    {
+        return $this->id_categorie;
+    }
+
+    public function setIdCategorie(int $id_categorie): self
+    {
+        $this->id_categorie = $id_categorie;
+
+        return $this;
+    }
+
+    public function getUrl(): ?string
+    {
+        return $this->url;
+    }
+
+    public function setUrl(?string $url): self
+    {
+        $this->url = $url;
+
+        return $this;
+    }
+
+    public function getAdresse(): ?string
+    {
+        return $this->adresse;
+    }
+
+    public function setAdresse(?string $adresse): self
+    {
+        $this->adresse = $adresse;
+
+        return $this;
+    }
+
+    public function getCode(): ?string
+    {
+        return $this->code;
+    }
+
+    public function setCode(?string $code): self
+    {
+        $this->code = $code;
+
+        return $this;
+    }
+
+    public function getVille(): ?string
+    {
+        return $this->ville;
+    }
+
+    public function setVille(?string $ville): self
+    {
+        $this->ville = $ville;
+
+        return $this;
+    }
+
+    public function getLieu(): ?int
+    {
+        return $this->lieu;
+    }
+
+    public function setLieu(int $lieu): self
+    {
+        $this->lieu = $lieu;
 
         return $this;
     }
