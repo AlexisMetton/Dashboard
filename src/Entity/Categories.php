@@ -37,18 +37,6 @@ class Categories
         return $this->id;
     }
 
-    public function getCategorie1(): ?string
-    {
-        return $this->categorie1;
-    }
-
-    public function setCategorie1(string $categorie1): self
-    {
-        $this->categorie1 = $categorie1;
-
-        return $this;
-    }
-
     public function getCategorie(): ?string
     {
         return $this->categorie;

@@ -15,7 +15,7 @@ class PropertyType extends AbstractType
             ->add('title')
             ->add('description')
             ->add('prix')
-            ->add('rooms')
+            ->add('id_categorie')
             ->add('image')
             ->add('dateAchat')
             ->add('dateGarantie')
