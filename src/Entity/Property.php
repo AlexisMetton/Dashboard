@@ -58,6 +58,11 @@ class Property
      */
     private $dateGarantie;
 
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $id_categorie;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -153,6 +158,18 @@ class Property
     public function setDateGarantie(\DateTimeInterface $dateGarantie): self
     {
         $this->dateGarantie = $dateGarantie;
+
+        return $this;
+    }
+
+    public function getIdCategorie(): ?int
+    {
+        return $this->id_categorie;
+    }
+
+    public function setIdCategorie(int $id_categorie): self
+    {
+        $this->id_categorie = $id_categorie;
 
         return $this;
     }
