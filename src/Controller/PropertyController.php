@@ -7,6 +7,7 @@ use App\Repository\PropertyRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Knp\Component\Pager;
 
 class PropertyController extends AbstractController
 {
@@ -23,12 +24,12 @@ class PropertyController extends AbstractController
      * @Route("/achats", name="property.index")
      * @return Response
      */
-    public function index(): Response
+    public function index(PaginatorInterface $paginator): Response
     {
-        $property = $this->repository->findAll();
-        dump($property);
+        $properties = $this->repository->findAll();
         return $this->render('property/index.html.twig', [
-            'current_menu' => 'properties'
+            'current_menu' => 'properties',
+            'properties' => $properties
         ]);
     }
 

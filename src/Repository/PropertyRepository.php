@@ -22,6 +22,15 @@ class PropertyRepository extends ServiceEntityRepository
         parent::__construct($registry, Property::class);
     }
 
+    /**
+     * @return Query
+     */
+    public function findAllVisibleQuery(): Query
+    {
+        return $this->findVisibleQuery()
+            ->getQuery();
+    }
+
     public function add(Property $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);
@@ -43,7 +52,7 @@ class PropertyRepository extends ServiceEntityRepository
     public function findLatest(): array 
     {
         return $this->findVisibleQuery()
-            ->setMaxResults(4)
+            ->setMaxResults(10)
             ->getQuery()
             ->getResult();
     }
