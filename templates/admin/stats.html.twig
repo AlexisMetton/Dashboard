@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Statistiques{% endblock %}
+
+{% block stylesheet %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.css" 
+integrity="sha512-/zs32ZEJh+/EO2N1b0PEdoA10JkdC3zJ8L5FTiQu82LR9S/rOQNfQN7U59U9BC12swNeRAz3HSzIL2vpp4fv3w==" 
+crossorigin="anonymous" referrerpolicy="no-referrer">
+{% endblock %}
+
+{% block body %}
+<div class=" container">
+    <h1>Les statistiques<h1/>
+    <canvas id="categories"></canvas>
+</div>
+{% endblock %}
+
+{% block javascripts %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.bundle.js" 
+integrity="sha512-zO8oeHCxetPn1Hd9PdDleg5Tw1bAaP0YmNvPY8CwcRyUk7d7/+nyElmFrB6f7vg4f7Fv4sui1mcep8RIEShczg==" 
+crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+    let categories = document.querySelector("#categories")
+    let categGraph = new Chart(categories, {
+        type: "pie",
+        data: {
+            labels: {{ categNom |raw}},
+            datasets: [{
+                label : "Répartition des catégories",
+                data: {{categCount | raw}},
+                backgroundColor:[  'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)'
+                ],
+            
+                borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)'
+            ],
+             borderWidth: 1
+        }]
+        },
+         options: {
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+    })
+</script>
+{% endblock %}

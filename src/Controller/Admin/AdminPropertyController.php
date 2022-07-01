@@ -4,6 +4,8 @@ namespace App\Controller\Admin;
 
 use App\Entity\Property;
 use App\Form\PropertyType;
+use App\Repository\CategoriesRepository;
+use App\Repository\CategoryRepository;
 use App\Repository\PropertyRepository;
 use App\Service\FileUploader;
 use Doctrine\ORM\EntityManager;
@@ -156,5 +158,31 @@ class AdminPropertyController extends AbstractController
         }
         return $this->redirectToRoute('admin.property.index');
     }
+
+    /**
+     * @Route("/admin/stats", name="stats")
+     */
+
+     public function statistiques(CategoryRepository $categRepo){
+        //On va chercher toutes les catégories
+        $categories = $categRepo->findAll();
+
+        $categNom = [];
+        $categCount =[];
+
+        foreach($categories as $categorie){
+            $categNom[] = $categorie->getCategories();
+            $categCount[] = count($categorie->getidCategorie());
+        }
+
+
+
+        return $this-> render('admin/stats.html.twig',[
+            'categNom' => json_encode($categNom),
+            'categCount' => json_encode($categCount)
+        
+
+        ]);
+     }
 
 }

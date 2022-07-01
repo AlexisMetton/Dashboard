@@ -23,11 +23,10 @@
                             <h5 class="card-title">
                                 <a href="{{ path('property.show', {id: property.id, slug: property.slug}) }}">{{ property.title }}</a>
                             </h5>
-                            <p class="card-text">{{ property.description }}</p>
                              {% if property.image == true %}
-                            <img src="{{ asset ('img/ticket/') ~ property.image}}">
+                            <img src="{{ asset ('img/ticket/' ~ property.image) | imagine_filter('square') }}">
                             {% endif %}         
-                            <div class="text-primary" style="font-weight:bold; font-size:2rem">{{ property.formattedPrice}} €</div>
+                            <div class="text-primary end" style="font-weight:bold; font-size:2rem">{{ property.formattedPrice}} €</div>
                         </div>
                     </div>
                 </div>

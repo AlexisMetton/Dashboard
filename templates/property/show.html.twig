@@ -3,16 +3,23 @@
 {% block title property.title %}
 
 {% block body %}
-    <div class="container mt-4">
+    <div class="container mt-4 ">
         <div class="row">
-            <div class="col-md-4">
-            
-            </div>
-            <div class="col-md-4">
+           
+            <div class=" justify-content-center text-center ">
                 <h1>{{ property.title }}</h1> 
-                <h2>{{ property.description }}</h2>
-                <div class="text-primary" style="font-size: 4rem; font-weight:bold;">
-                    {{ property.formattedPrice}} €
+                <h2 class=" mb-5 " style="font-size: 1.5rem;">{{ property.description }} </h2>
+                <div class=" text-primary  align-content-between " style="font-size: 2rem; font-weight:bold;">
+                {% if property.image == true %}
+                    <img class="mb-5" src="{{ asset ('img/ticket/' ~ property.image) | imagine_filter('show') }}">
+                {% endif %}
+                    <div class=" d-flex justify-content-between ">
+                        <p class=" w-25  card border-primary justify-content-center ">{{ property.formattedPrice}} €</p>
+                        <div class=" w-50 card justify-content-center  border-primary card-group  row right ">
+                            <p class=""> achat: {{property.dateAchat | date('d-m-Y')}}</p>
+                            <p class=""> Garantie: {{property.dateGarantie | date('d-m-Y')}}</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

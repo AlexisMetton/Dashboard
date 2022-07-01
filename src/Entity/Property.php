@@ -74,7 +74,9 @@ class Property
     /**
      * @ORM\Column(type="integer")
      * @Assert\Range(min="1")
+     * 
      */
+     
     private $id_categorie;
 
     /**
@@ -102,6 +104,11 @@ class Property
      * @Assert\Range(min="1", max="2")
      */
     private $lieu;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="id_categorie")
+     */
+    private $category;
 
     public function getId(): ?int
     {
@@ -258,6 +265,18 @@ class Property
     public function setLieu(int $lieu): self
     {
         $this->lieu = $lieu;
+
+        return $this;
+    }
+
+    public function getCategory(): ?Category
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?Category $category): self
+    {
+        $this->category = $category;
 
         return $this;
     }
