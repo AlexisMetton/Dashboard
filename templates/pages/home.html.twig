@@ -19,8 +19,8 @@
             {% for property in properties %}
            
                 <div class="col-3">
-                    <div class="card">
-                        <div class="card-body text-center">
+                    <div class="card" style="margin-bottom:25px">
+                        <div class="card-body text-center" >
                             <h5 class="card-title " style="height:100px; padding:auto;">
                                 <a href="{{ path('property.show', {id: property.id, slug: property.slug}) }}">{{ property.title | u.truncate(50,'...')}}</a> <!-- u.truncate ( 50, '...' pour raccourcir un texte sur une carte-->
                             </h5>
