@@ -7,7 +7,10 @@
         <div class="container">
             {{ form_start(form) }}
             <div class="form-row">
-                <div class="col-3">
+                <div class="col">
+                    {{ form_row(form.minPrice) }}
+                </div>
+                <div class="col">
                     {{ form_row(form.maxPrice) }}
                 </div>
                 <div class="col">

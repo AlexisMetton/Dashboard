@@ -37,6 +37,12 @@ class PropertyRepository extends ServiceEntityRepository
             ->setParameter('maxprice', $search->getMaxPrice());
         }
 
+        if($search->getMinPrice()){
+            $query = $query
+            ->where('p.prix <= :minPrice')
+            ->setParameter('minprice', $search->getMinPrice());
+        }
+
         return $query->getQuery();
     }
 
