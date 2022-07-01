@@ -28,15 +28,11 @@
                              {% if property.image == true %}
                             <img src="{{ asset ('img/ticket/' ~ property.image) | imagine_filter('square') }}">
                             {% endif %}         
-                            <div class="text-primary" style="font-weight:bold; font-size:2rem">{{ property.formattedPrice}} €</div>
+                            <div class="text-primary end" style="font-weight:bold; font-size:2rem">{{ property.formattedPrice}} €</div>
                         </div>
                     </div>
                 </div>
-                
             {% endfor %}
-            
-                 
-           
         </div>
     </div>
 {% endblock %}
