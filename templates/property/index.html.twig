@@ -14,7 +14,7 @@
                     {{ form_row(form.maxPrice) }}
                 </div>
                 <div class="col">
-                    <button class="btn btn-primary">Rechercher</button>
+                    <button class="btn btn-light">Rechercher</button>
                 </div>
             </div>
             {{ form_end(form) }}
@@ -28,15 +28,15 @@
         {% for property in properties %}
            <div class="col-3">
                     <div class="card" style="margin-bottom:25px">
-                        <div class="card-body text-center" >
+                        <div class="card-body text-center">
                             <h5 class="card-title " style="height:100px; padding:auto;">
-                                <a href="{{ path('property.show', {id: property.id, slug: property.slug}) }}">{{ property.title | u.truncate(50,'...')}}</a> <!-- u.truncate ( 50, '...' pour raccourcir un texte sur une carte-->
+                                <a href="{{ path('property.show', {id: property.id, slug: property.slug}) }}" class="text-info" style="font-size:1.3rem; text-decoration:none;">{{ property.title | u.truncate(50,'...')}}</a> <!-- u.truncate ( 50, '...' pour raccourcir un texte sur une carte-->
                             </h5>
                             <!-- <p class="card-text">{property.description}}</p> --> 
                              {% if property.image == true %}
                             <img src="{{ asset ('img/ticket/' ~ property.image) | imagine_filter('square') }}">
                             {% endif %}         
-                            <div class="text-primary end" style="font-weight:bold; font-size:2rem">{{ property.formattedPrice}} €</div>
+                            <div class="text-dark" style="font-weight:bold; font-size:2rem; ">{{ property.formattedPrice}} €</div>
                         </div>
                     </div>
                 </div>
