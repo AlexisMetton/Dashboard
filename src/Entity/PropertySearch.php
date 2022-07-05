@@ -24,7 +24,7 @@
         return $this->maxPrice;
     }
 
-        /**
+    /**
      * @return int|null
      */
     public function getMinPrice(): ?int
