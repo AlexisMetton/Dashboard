@@ -26,14 +26,24 @@
     <div class="row">
 
         {% for property in properties %}
-        <div class="col-md-4">
-            {% include 'property/_property.html.twig' %}
-        </div>
+           <div class="col-3">
+                    <div class="card" style="margin-bottom:25px">
+                        <div class="card-body text-center" >
+                            <h5 class="card-title " style="height:100px; padding:auto;">
+                                <a href="{{ path('property.show', {id: property.id, slug: property.slug}) }}">{{ property.title | u.truncate(50,'...')}}</a> <!-- u.truncate ( 50, '...' pour raccourcir un texte sur une carte-->
+                            </h5>
+                            <!-- <p class="card-text">{property.description}}</p> --> 
+                             {% if property.image == true %}
+                            <img src="{{ asset ('img/ticket/' ~ property.image) | imagine_filter('square') }}">
+                            {% endif %}         
+                            <div class="text-primary end" style="font-weight:bold; font-size:2rem">{{ property.formattedPrice}} €</div>
+                        </div>
+                    </div>
+                </div>
         {% endfor %}
     </div>
-
-    <div class="pagination">
-        {{ knp_pagination_render(properties) }}
+    <div class="pagination active" style="font-size:1.9rem; text-decoration:none;">
+        {{ knp_pagination_render(properties) }} 
     </div>
     </div>
 {% endblock %}
