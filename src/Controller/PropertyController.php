@@ -65,5 +65,4 @@ class PropertyController extends AbstractController
             'current_menu' => 'properties'
         ]);
     }
-
 }

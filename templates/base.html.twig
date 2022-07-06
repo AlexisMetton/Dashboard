@@ -21,7 +21,19 @@
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
           <a class="nav-link text-light {% if current_menu is defined and current_menu == 'properties' %}active {% endif %}" aria-current="page" href="{{ path('property.index')}}">Achat</a>
+          </li>
+          {% if app.user %}
+
+          <li class="nav-item">
+          <a href="{{ path('stats') }}" class="nav-link text-light">Statistiques</a>
         </li>
+
+        <li class="nav-item">
+          <a href="{{ path('admin') }}" class="nav-link text-light">Administration</a>
+        </li>
+  
+      {% endif %}
+        
       </ul>
       {% if app.user %}
       <ul class="navbar-nav" style="margin-right: 10px">
@@ -29,7 +41,16 @@
           <a href="{{ path('logout') }}" class="nav-link text-light">Se déconnecter</a>
         </li>
       </ul>
+     
+
+      {% else %}
+      <ul class="navbar-nav" style="margin-right: 10px">
+        <li class="nav-item">
+          <a href="{{ path('admin') }}" class="nav-link text-light">Se connecter</a>
+        </li>
+      </ul>
       {% endif %}
+
     </div>
 </nav>
         {% block body %}{% endblock %}
