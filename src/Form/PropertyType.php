@@ -18,13 +18,14 @@ class PropertyType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('title')
+            ->add('title', null, [
+                'label' => 'Titre'
+            ])
             ->add('url')
             ->add('adresse')
             ->add('code')
             ->add('ville')
             ->add('lieu')
-            ->add('title')
             ->add('description')
             ->add('prix')
             ->add('id_categorie', null, [
