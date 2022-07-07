@@ -163,25 +163,39 @@ class AdminPropertyController extends AbstractController
      * @Route("/admin/stats", name="stats")
      */
 
-     public function statistiques(CategoryRepository $categRepo){
+     public function statistiques(CategoryRepository $categRepo, PropertyRepository $proprepo){
         //On va chercher toutes les catégories
         $categories = $categRepo->findAll();
 
         $categNom = [];
         $categCount =[];
-
+        // on demonte les données pour les séparer tel qu'attendu par chartJS
         foreach($categories as $categorie){
             $categNom[] = $categorie->getCategories();
             $categCount[] = count($categorie->getidCategorie());
         }
 
 
+        // ON va chercher le nombre de produit publiées par date
+        $propertys = $proprepo->countByDate();
+
+        $dates = [];
+        $propertyCount = [];
+
+         // on demonte les données pour les séparer tel qu'attendu par chartJS
+
+        foreach($propertys as $property){
+            $dates[] = $property['date_achat'];
+            $propertyCount[] = $property['count'];
+        }
+
+
 
         return $this-> render('admin/stats.html.twig',[
             'categNom' => json_encode($categNom),
-            'categCount' => json_encode($categCount)
-        
-
+            'categCount' => json_encode($categCount),
+            'dates' => json_encode($dates),
+            'propertyCount' => json_encode($propertyCount)
         ]);
      }
 

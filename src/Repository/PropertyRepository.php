@@ -103,4 +103,20 @@ class PropertyRepository extends ServiceEntityRepository
 
 
 
+
+/**
+ * Returns number of "Property" per day
+ * @return void
+ * 
+ */
+
+    public function countByDate(){
+        $query = $this->createQueryBuilder('a')
+        ->select('SUBSTRING(a.dateAchat,1,10) as date_achat, COUNT(a) as count')
+        ->groupBy('date_achat');
+
+        return $query->getQuery()->getResult();
+
+    }
+
 }
