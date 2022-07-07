@@ -12,6 +12,9 @@ crossorigin="anonymous" referrerpolicy="no-referrer">
 <div class=" container">
     <h1>Les statistiques<h1/>
     <canvas id="categories"></canvas>
+
+   <canvas id="dateachat" class="mt-5"></canvas>
+
 </div>
 {% endblock %}
 
@@ -50,6 +53,20 @@ crossorigin="anonymous" referrerpolicy="no-referrer"></script>
             }
         }
     }
+    })
+
+
+    let date = document.querySelector("#dateachat")
+    let dategraph = new Chart(date,{
+        type: "line",
+        data:{
+            labels: {{ dates |raw}},
+            datasets:[{
+                label: "Nombres d'achat par date",
+                data: {{ propertyCount |raw}}
+                
+            }]
+        }
     })
 </script>
 {% endblock %}
