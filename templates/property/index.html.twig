@@ -3,7 +3,7 @@
 {% block title 'Tous nos achats' %}
 
 {% block body %}
-    <div class="jumbotron" style="margin-top:10px">
+    <div class="jumbotron" style="margin-top:30px">
         <div class="container">
             {{ form_start(form) }}
             <div class="form row">
@@ -14,7 +14,7 @@
                     {{ form_row(form.maxPrice) }}
                 </div>
                 <div class="col">
-                    <button class="btn btn-primary">Rechercher</button>
+                    <button class="btn text-light" style="border-style:solid; background-color:#393D3A">Rechercher</button>
                 </div>
             </div>
             {{ form_end(form) }}
@@ -26,14 +26,24 @@
     <div class="row">
 
         {% for property in properties %}
-        <div class="col-md-4 ">
-            {% include 'property/_property.html.twig' %}
-        </div>
+           <div class="col-lg-4 col-md-6 col mb-5 bg-white rounded" style="flex-wrap:wrap;">
+                    <div class="card" style="border-width:5px; border-color:#393D3A" >
+                        <div class="card-body text-center">
+                            <h5 class="card-title " style="height:80px; margin:auto;">
+                                <a href="{{ path('property.show', {id: property.id, slug: property.slug}) }}"  style="font-size:1.1rem; text-decoration:none; color:black;">{{ property.title | u.truncate(50,'...')}}</a> <!-- u.truncate ( 50, '...' pour raccourcir un texte sur une carte-->
+                            </h5>
+                            <!-- <p class="card-text">{property.description}}</p> --> 
+                             {% if property.image == true %}
+                            <img src="{{ asset ('img/ticket/' ~ property.image) | imagine_filter('square') }}">
+                            {% endif %}         
+                            <div style="font-weight:bold; font-size:2rem; color:#748f82;">{{ property.formattedPrice}} €</div>
+                        </div>
+                    </div>
+                </div>
         {% endfor %}
     </div>
-
-    <div class="pagination">
-        {{ knp_pagination_render(properties) }}
+    <div class="pagination active" style="margin:auto; justify-content:center;">
+        {{ knp_pagination_render(properties) }} 
     </div>
     </div>
 {% endblock %}

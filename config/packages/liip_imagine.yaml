@@ -10,7 +10,6 @@ liip_imagine:
                         size: [200,200]
                         mode: inbound
 
-
             show:
                 quality: 100
                 filters:

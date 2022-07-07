@@ -30,7 +30,7 @@
                         <form method="post" action="{{ path('admin.property.delete', {id: property.id}) }}" style="display:inline-block;" onsubmit="return confirm('Êtes-vous vraiment sûr ?')">
                             <input type="hidden" name="_method" value="DELETE">
                             <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ property.id) }}">
-                            <button class="btn btn-danger">Supprimer</button>
+                            <button class="btn btn-danger mt-sm-2 mt-md-2 mt-lg-0">Supprimer</button>
                         </form>
                     </td>
                 </tr> 

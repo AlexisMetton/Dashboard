@@ -14,10 +14,10 @@
                     <img class="mb-5" src="{{ asset ('img/ticket/' ~ property.image) | imagine_filter('show') }}">
                 {% endif %}
                     <div class=" d-flex justify-content-between ">
-                        <p class=" w-25  card border-primary justify-content-center ">{{ property.formattedPrice}} €</p>
-                        <div class=" w-50 card justify-content-center  border-primary card-group  row right ">
-                            <p class=""> achat: {{property.dateAchat | date('d-m-Y')}}</p>
-                            <p class=""> Garantie: {{property.dateGarantie | date('d-m-Y')}}</p>
+                        <p class=" w-25  card justify-content-center " style="color:#393D3A; border-color:#393D3A; border-style:solid;">{{ property.formattedPrice}} €</p>
+                        <div class=" w-50 card justify-content-center card-group  row right" style="color:#393D3A; border-color:#393D3A; border-style:solid;">
+                            <p style="color:#393D3A"> Achat: {{property.dateAchat | date('d-m-Y')}}</p>
+                            <p style="color:#393D3A"> Garantie: {{property.dateGarantie | date('d-m-Y')}}</p>
                         </div>
                     </div>
                 </div>
