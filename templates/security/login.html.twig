@@ -4,6 +4,21 @@
 
 {% block body %}
 <div class="container mt-4">
+{% for message in app.flashes('goodpass') %}
+        <div class="alert alert-success">
+            {{ message }}
+        </div>
+        {% endfor %}
+        {% for message in app.flashes('successpass') %}
+        <div class="alert alert-success">
+            {{ message }}
+        </div>
+        {% endfor %}
+        {% for message in app.flashes('dangerpass') %}
+        <div class="alert alert-danger">
+            {{ message }}
+        </div>
+    {% endfor %}
 
     {% if error %}
         <div class="alert alert-danger">
@@ -22,7 +37,8 @@
             <input type="password" id="password" name="_password" class="form-control">
         </div>
 
-        <button type="submit" class="btn btn-primary" style="margin-top: 20px">Se connecter</button>
+        <button type="submit" class="btn text-light" style="margin-top: 20px; background-color:#393D3A;">Se connecter</button>      
     </form>
+    <a class=" btn text-light" style="margin-top: 20px; background-color:#393D3A;" href="{{path('forgotten_password')}}">Mot de passe oublié</a>
 </div>
 {% endblock %}
