@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Form\PropertySearchType;
 use App\Form\SearchWordType;
 use App\Repository\PropertyRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -19,7 +20,7 @@ class HomeController extends AbstractController
     public function index(PropertyRepository $repository, Request $request): Response
     {
         $properties = $repository->findLatest();
-        $form = $this->createForm(SearchWordType::class);
+        $form = $this->createForm(PropertySearchType::class);
         $search = $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()){
@@ -28,7 +29,7 @@ class HomeController extends AbstractController
 
         return $this->render('pages/home.html.twig', [
             'properties' => $properties,
-            'form' => $form->createView()
+            'formSearch' => $form->createView()
         ]);
     }
 }
