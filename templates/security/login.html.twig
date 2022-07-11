@@ -4,17 +4,17 @@
 
 {% block body %}
 <div class="container mt-4">
-{% for message in app.flashes('goodpass') %}
+    {% for message in app.flashes('goodpass') %}
         <div class="alert alert-success">
             {{ message }}
         </div>
-        {% endfor %}
-        {% for message in app.flashes('successpass') %}
+    {% endfor %}
+    {% for message in app.flashes('sucesspass') %}
         <div class="alert alert-success">
             {{ message }}
         </div>
-        {% endfor %}
-        {% for message in app.flashes('dangerpass') %}
+    {% endfor %}
+    {% for message in app.flashes('dangerpass') %}
         <div class="alert alert-danger">
             {{ message }}
         </div>
