@@ -28,6 +28,20 @@ class User implements UserInterface,\Serializable
      */
     private $password;
 
+    /**
+     * @ORM\Column(type="string", length=100, nullable=true)
+     */
+    private $resetToken;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $email;
+
+ 
+
+
+
     public function getId(): ?int
     {
         return $this->id;
@@ -133,4 +147,30 @@ class User implements UserInterface,\Serializable
             $this->password
             ) = unserialize($serialized, ['allowed_classes' => false]);
     }
+
+    public function getResetToken(): ?string
+    {
+        return $this->resetToken;
+    }
+
+    public function setResetToken(?string $resetToken): self
+    {
+        $this->resetToken = $resetToken;
+
+        return $this;
+    }
+
+    public function getEmail(): ?string
+    {
+        return $this->email;
+    }
+
+    public function setEmail(string $email): self
+    {
+        $this->email = $email;
+
+        return $this;
+    }
+
+
 }

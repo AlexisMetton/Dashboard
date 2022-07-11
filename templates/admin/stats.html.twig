@@ -63,7 +63,8 @@ crossorigin="anonymous" referrerpolicy="no-referrer"></script>
             labels: {{ dates |raw}},
             datasets:[{
                 label: "Nombres d'achat par date",
-                data: {{ propertyCount |raw}}
+                data: {{ propertyCount |raw}},
+                 backgroundColor: "rgba(54, 162, 235, 0.2)"
                 
             }]
         }
