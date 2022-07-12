@@ -22,7 +22,8 @@ class SearchWordType extends AbstractType
             ])
             ->add('Rechercher', SubmitType::class, [
                 'attr' => [
-                    'class' => 'btn primary',
+                    'class' => 'btn',
+                    'style' => 'background-color:#90dda3'
                 ]
             ])
         ;
