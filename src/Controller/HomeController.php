@@ -20,7 +20,7 @@ class HomeController extends AbstractController
     public function index(PropertyRepository $repository, Request $request): Response
     {
         $properties = $repository->findLatest();
-        $form = $this->createForm(PropertySearchType::class);
+        $form = $this->createForm(SearchWordType::class);
         $search = $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()){
