@@ -2,9 +2,11 @@
 
 namespace App\Form;
 
+use App\Entity\Lieux;
 use App\Entity\Property;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -16,17 +18,20 @@ class PropertyType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('title')
+            ->add('title', null, [
+                'label' => 'Titre'
+            ])
             ->add('url')
             ->add('adresse')
             ->add('code')
             ->add('ville')
             ->add('lieu')
-            ->add('title')
             ->add('description')
             ->add('prix')
-            ->add('id_categorie')
-            ->add('image',FileType::class, ["mapped"=>false,'data_class'=>null,'label'=> 'ticket', 'required' => false])
+            ->add('id_categorie', null, [
+                'label' => 'Catégorie'
+            ])
+            ->add('image',FileType::class, ["mapped"=>false,'data_class'=>null,'label'=> 'Image', 'required' => false])
             ->add('dateAchat')
             ->add('dateGarantie')
         ;

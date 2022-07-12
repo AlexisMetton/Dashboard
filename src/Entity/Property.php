@@ -12,6 +12,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 /**
  * @ORM\Entity(repositoryClass=PropertyRepository::class)
  * @UniqueEntity("title")
+ * @ORM\Table(name="property", indexes={@ORM\Index(columns={"title", "description"}, flags={"fulltext"})})
  */
 class Property
 {
