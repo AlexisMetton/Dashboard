@@ -1,4 +1,7 @@
         {{ form_start(form ) }}
             {{ form_widget(form) }}
+            {% if (form.lieu) == [1] %}
+            {{ form_widget(form.url) }}
+               {% endif %}
             <button class="btn text-light" style="background-color:#393D3A">{{ button|default('Enregistrer') }} </button>
         {{ form_end(form ) }}

@@ -4,9 +4,16 @@ namespace App\Form;
 
 use App\Entity\Property;
 
+use App\Entity\Category;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\FormEvents;
+use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\HttpFoundation\File\File;
@@ -17,19 +24,40 @@ class PropertyType extends AbstractType
     {
         $builder
             ->add('title')
+            
+           
+            ->add('lieu', ChoiceType::class,[
+               'choices'=>[
+                $ligne = 'en ligne'=>1,
+                $mag = 'en magasin' =>2]
+                  ]) 
+                
             ->add('url')
-            ->add('adresse')
-            ->add('code')
-            ->add('ville')
-            ->add('lieu')
+            ->add('adresse')    
+            ->add('code',TextType::class,[
+                'label' => 'code postal'
+            ])
+            ->add('ville')        
             ->add('title')
             ->add('description')
             ->add('prix')
-            ->add('id_categorie')
+            ->add('category',EntityType::class,[
+                'class' => Category::class,
+                'label' => 'catégorie',
+               /* 'choices' => [
+                    'embalage' => 1,
+                    'ensasage' => 2,
+                    'remplissage' => 3,
+                    'scellage' => 4
+                ]*/
+            ])
             ->add('image',FileType::class, ["mapped"=>false,'data_class'=>null,'label'=> 'ticket', 'required' => false])
             ->add('dateAchat')
-            ->add('dateGarantie')
-        ;
+            ->add('dateGarantie');
+        
+       
+                   
+                 
     }
 
     public function configureOptions(OptionsResolver $resolver): void

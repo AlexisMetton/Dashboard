@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Cocur\Slugify\Slugify;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
-
+use App\Entity\Category;
 
 /**
  * @ORM\Entity(repositoryClass=PropertyRepository::class)
@@ -274,10 +274,13 @@ class Property
         return $this->category;
     }
 
-    public function setCategory(?Category $category): self
+    public function setCategory(Category $category): self
     {
         $this->category = $category;
 
         return $this;
+    }
+    public function __toString(){
+        return $this->name;
     }
 }

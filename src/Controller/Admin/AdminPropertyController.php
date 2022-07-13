@@ -60,14 +60,14 @@ class AdminPropertyController extends AbstractController
         $property = new Property();
         $form = $this->createForm(PropertyType::class, $property);
         $form->handleRequest($request);
-       
+      
        
 
         if($form->isSubmitted() && $form->isValid())
         { 
           //  $property->setBrochureFilename(
               //  new File($this->getParameter('brochures_directory').$property->getBrochureFilename()));
-         
+            $property->setIdCategorie(1);
             $brochureFile = $form->get('image')->getData();
 
             // this condition is needed because the 'brochure' field is not required
