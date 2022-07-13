@@ -24,7 +24,7 @@ class HomeController extends AbstractController
         $search = $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()){
-            $properties = $repository->search($search->get('mots')-> getData());
+            $properties = $repository->search($search->get('mots')->getData());
         }
 
         return $this->render('pages/home.html.twig', [
