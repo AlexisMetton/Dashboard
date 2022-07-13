@@ -36,7 +36,8 @@ class PropertyType extends AbstractType
             ->add('url')
             ->add('adresse')    
             ->add('code',TextType::class,[
-                'label' => 'code postal'
+                'label' => 'code postal',
+                'required' => false
             ])
             ->add('ville')        
             ->add('title')
