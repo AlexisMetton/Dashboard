@@ -28,8 +28,8 @@ class PropertyType extends AbstractType
            
             ->add('lieu', ChoiceType::class,[
                'choices'=>[
-                $ligne = 'en ligne'=>1,
-                $mag = 'en magasin' =>2]
+                'en ligne'=>1,
+                'en magasin' =>2]
                   ]) 
                 
             ->add('url')
