@@ -12,6 +12,7 @@ use App\Entity\Category;
 /**
  * @ORM\Entity(repositoryClass=PropertyRepository::class)
  * @UniqueEntity("title")
+ * @ORM\Table(name="property", indexes={@ORM\Index(columns={"title", "description"}, flags={"fulltext"})})
  */
 class Property
 {

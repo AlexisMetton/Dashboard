@@ -2,6 +2,7 @@
 
 namespace App\Form;
 
+use App\Entity\Lieux;
 use App\Entity\Property;
 
 use App\Entity\Category;

@@ -16,30 +16,29 @@
     <nav class="navbar navbar-expand-lg" style="background-color:#393D3A;" >
     <a class="navbar-brand text-light" href="{{ path('home')}}" style="margin-left:10px">Dashboard</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
+      <span class="navbar-dark navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link text-light {% if current_menu is defined and current_menu == 'properties' %}active {% endif %}" aria-current="page" href="{{ path('property.index')}}">Achat</a>
+          <a class="nav-link text-light {% if current_menu is defined and current_menu == 'properties' %}active {% endif %}"  aria-current="page" href="{{ path('property.index')}}" style="margin-left:20px;">Achat</a>
           </li>
           {% if app.user %}
 
           <li class="nav-item">
-          <a href="{{ path('stats') }}" class="nav-link text-light">Statistiques</a>
+          <a href="{{ path('stats') }}" class="nav-link text-light" style="margin-left:20px;">Statistiques</a>
         </li>
 
         <li class="nav-item">
-          <a href="{{ path('admin') }}" class="nav-link text-light">Administration</a>
+          <a href="{{ path('admin') }}" class="nav-link text-light" style="margin-left:20px;">Administration</a>
         </li>
   
       {% endif %}
-        
       </ul>
       {% if app.user %}
       <ul class="navbar-nav" style="margin-right: 10px">
         <li class="nav-item">
-          <a href="{{ path('logout') }}" class="nav-link text-light">Se déconnecter</a>
+          <a href="{{ path('logout') }}" class="nav-link text-light" style="margin-left:20px;" >Se déconnecter</a>
         </li>
       </ul>
      
@@ -51,7 +50,6 @@
         </li>
       </ul>
       {% endif %}
-
     </div>
 </nav>
         {% block body %}{% endblock %}

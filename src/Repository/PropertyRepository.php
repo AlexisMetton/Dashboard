@@ -76,6 +76,20 @@ class PropertyRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('p');
     }
+
+
+    /**
+     * @return void
+     */
+    public function search($mots){
+        $query = $this->createQueryBuilder('a');
+        if($mots != null){
+            $query->andWhere('MATCH_AGAINST(a.title, a.description) AGAINST (:mots boolean)>0')
+                ->setParameter('mots', $mots);
+        }
+
+        return $query->getQuery()->getResult();
+    }
 //    /**
 //     * @return Property[] Returns an array of Property objects
 //     */
